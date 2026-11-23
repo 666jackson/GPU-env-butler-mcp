@@ -2,7 +2,7 @@
 
 一個**只讀**的 MCP server，讓 AI agent 查詢這台機器的 GPU、系統資源、Python／CUDA 環境與 Ollama 模型狀態，接上 **OpenCode** 後用本機 Ollama 模型（`gpt-oss:20b`，約 14GB 顯存，控制在 20GB 內）回答「幫我做環境健檢」、「我還能再載入一個 27B 模型嗎？」這類問題。
 
-> 展示素材：`docs/screenshots/`（含工具實測輸出 `mcp_tools_output.txt` 與 OpenCode 問答紀錄）
+> 展示素材：`docs/screenshots/`（`mcp_tools_output.txt` 為 MCP client 實測八個工具的輸出；`q1–q4.md` 為 OpenCode + 本機模型的真實問答紀錄。瀏覽器截圖可用 `mcp dev server.py` 開 Inspector 補拍）
 
 ## 它能回答什麼
 
@@ -68,7 +68,21 @@ npm i -g opencode-ai && opencode
 
 ## 工具描述調整紀錄
 
-<!-- OPENCODE_NOTES -->
+模型：`gpt-oss-32k`（gpt-oss:20b + `num_ctx 32768`，實測佔 12GB 顯存，在 20GB 限制內）。完整輸出：改前 `docs/screenshots/q*_before.md`，改後 `docs/screenshots/q*.md`（由 `scripts/run_demos.sh` 用 `opencode run` 產生）。
+
+| 問題 | 改前 | 調整 | 改後 |
+| --- | --- | --- | --- |
+| Q1 顯卡被誰佔用？ | 只呼叫 `gpu_status`，沒列程式 | `gpu_processes` 描述開頭改成「誰在用顯卡」；`gpu_status` 註明「不含程式列表，請改用 gpu_processes」；WSL 下清單為空時回傳 `note` 說明 | 呼叫 `gpu_processes` + `gpu_status` |
+| Q2 還能載入 27B 嗎？ | 只呼叫 `ollama_status`，沒查剩餘顯存就估算（英文） | `ollama_status`／`gpu_status` 描述寫明「估算能否再載入要兩個一起用」；`AGENTS.md` 給估算公式 | 兩個工具都呼叫，9.6GB 剩餘 vs 需 18–20GB → 正確判斷不夠（繁中） |
+| Q3 PyTorch 跟 CUDA 相容嗎？ | **幻覺**：宣稱「CUDA 13.3 沒有任何 PyTorch 支援，要降級驅動」（錯，驅動 CUDA 版本是上限、向下相容） | 判斷交給程式：`cuda_stack` 新增 `compatibility` 欄位，描述要求「直接引用，不要自行推論」 | 正確回答「未安裝 torch，可裝 CUDA ≤ 13.3 的版本」 |
+| Q4 完整健檢 | 呼叫 4 個工具就停，還塞亂編的參數 | `AGENTS.md`：繁中、工具不需參數、健檢先 `health_warnings` | 8 個工具全呼叫，照範本輸出、提醒依等級排序 |
+
+改後仍觀察到的問題：
+- Q4 模型先去讀 `server.py` 找 health_report 範本（`opencode run` 不會自動帶入 MCP prompt），繞了幾步才開始呼叫工具。
+- Q4 把「可用 RAM 12.7GB」講成「使用中」→ `system_info` 已加上明確的 `ram_used_gb` 欄位。
+- 「下一步建議」寫了 4 點（範本要求最多 3 點），小模型對格式限制的遵守度有限。
+
+結論：**描述寫清楚「什麼時候用、要跟誰一起用」能修正選工具；會算錯或腦補的判斷，直接移到程式端回傳結論最可靠。**
 
 ## 已知限制與下一步
 
