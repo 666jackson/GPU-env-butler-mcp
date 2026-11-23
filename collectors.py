@@ -67,7 +67,7 @@ def parse_gpu_csv(text):
 
 
 def parse_cuda_version(header):
-    m = re.search(r"CUDA Version:\s*([\d.]+)", header)
+    m = re.search(r"CUDA (?:UMD )?Version:\s*([\d.]+)", header)
     return m.group(1) if m else None
 
 

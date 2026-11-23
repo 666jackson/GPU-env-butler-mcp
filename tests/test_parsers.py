@@ -26,6 +26,7 @@ def test_parse_apps_csv():
 
 def test_parse_cuda_and_nvcc():
     assert c.parse_cuda_version("| Driver Version: 550.54  CUDA Version: 12.4 |") == "12.4"
+    assert c.parse_cuda_version("KMD Version: 610.88  CUDA UMD Version: 13.3") == "13.3"
     assert c.parse_cuda_version("nothing") is None
     assert c.parse_nvcc("Cuda compilation tools, release 12.1, V12.1.105") == "12.1"
 
