@@ -19,13 +19,13 @@ def _j(obj):
 
 @mcp.tool()
 def gpu_status() -> str:
-    """查看每張 GPU 的型號、顯存總量/已用/剩餘(MiB)、使用率、溫度、功耗與驅動支援的 CUDA 版本。問顯卡狀態或剩多少顯存時用。"""
+    """GPU 硬體總覽：型號、顯存總量/已用/剩餘(MiB)、使用率、溫度、功耗、驅動支援的 CUDA 版本。不含程式列表；要知道哪個程式佔用請改用 gpu_processes。估算能否再載入模型時必須呼叫這個取得剩餘顯存。"""
     return _j(c.gpu_status())
 
 
 @mcp.tool()
 def gpu_processes() -> str:
-    """列出正在用 GPU 的程式：PID、名稱、使用者、佔用顯存(MiB)、已執行時間。問「顯卡被誰佔用」時用。"""
+    """誰在用顯卡：列出佔用 GPU 的程式 PID、名稱、使用者、佔用顯存(MiB)、已執行時間。使用者問「顯卡被誰佔用／哪個程式吃顯存」時優先用這個。"""
     return _j(c.gpu_processes())
 
 
@@ -49,13 +49,13 @@ def python_env() -> str:
 
 @mcp.tool()
 def cuda_stack() -> str:
-    """查看 PyTorch 編譯的 CUDA 版本、torch.cuda 是否可用、cuDNN、nvcc 與驅動支援的 CUDA 版本。問 PyTorch 與 CUDA 是否相容時用。"""
+    """PyTorch 與 CUDA 相容性：回傳 torch 編譯的 CUDA 版本、cuda 是否可用、驅動支援的 CUDA 上限，以及程式判斷好的 compatibility 結論。問 PyTorch／CUDA 相容時用，直接引用 compatibility 欄位，不要自行推論。"""
     return _j(c.cuda_stack())
 
 
 @mcp.tool()
 def ollama_status() -> str:
-    """查看 Ollama 已安裝的模型與大小、目前載入記憶體的模型、各佔多少顯存與卸載時間。問本機 LLM 模型時用。"""
+    """Ollama 本機模型：已安裝模型與大小、目前已載入的模型及各佔多少顯存(GB)。問「還能不能再載入模型」時要和 gpu_status 一起用。"""
     return _j(c.ollama_status())
 
 

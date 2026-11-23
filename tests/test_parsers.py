@@ -34,3 +34,11 @@ def test_parse_cuda_and_nvcc():
 def test_run_missing_command():
     ok, msg = c.run(["definitely-not-a-cmd-xyz"])
     assert not ok and "找不到" in msg
+
+
+def test_cuda_compatibility():
+    f = c.cuda_compatibility
+    assert f({"torch_installed": False, "driver_cuda_version": "13.3"}).startswith("目前 Python 未安裝 torch")
+    assert f({"torch_installed": True, "torch_cuda_version": None}).startswith("安裝的是 CPU 版")
+    assert f({"torch_installed": True, "torch_cuda_version": "12.8", "driver_cuda_version": "11.8"}).startswith("不相容")
+    assert f({"torch_installed": True, "torch_cuda_version": "12.8", "driver_cuda_version": "13.3", "cuda_available": True}).startswith("相容")

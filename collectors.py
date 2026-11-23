@@ -118,7 +118,10 @@ def gpu_processes():
             p["user"] = None
             p["running_seconds"] = None  # 容器/WSL 下常看不到其他命名空間的程式
         procs.append(p)
-    return {"available": True, "processes": procs}
+    out = {"available": True, "processes": procs}
+    if not procs and "microsoft" in platform.release().lower():
+        out["note"] = "WSL2 下看不到 Windows 端程式（例如 Windows 版 Ollama），清單為空但顯存仍可能被佔用；請對照 gpu_status 與 ollama_status"
+    return out
 
 
 # ---------- 系統 ----------
@@ -210,7 +213,24 @@ def cuda_stack(python=None):
     info["nvcc_version"] = parse_nvcc(out) if ok else "未安裝 nvcc"
     ok, header = run(["nvidia-smi"])
     info["driver_cuda_version"] = parse_cuda_version(header) if ok else None
+    info["compatibility"] = cuda_compatibility(info)
     return info
+
+
+def cuda_compatibility(info):
+    """程式判斷相容性，避免模型自行推論。驅動 CUDA 版本是上限，向下相容。"""
+    drv = info.get("driver_cuda_version")
+    if not info.get("torch_installed"):
+        return (f"目前 Python 未安裝 torch，無法檢查。驅動支援 CUDA {drv}（上限），"
+                f"可安裝 CUDA 主版本 ≤ {drv} 的 PyTorch（例如 cu12x 或 cu13x 版）" if drv else "未安裝 torch，也查不到驅動")
+    tc = info.get("torch_cuda_version")
+    if tc is None:
+        return "安裝的是 CPU 版 PyTorch，無法使用 GPU"
+    if drv and int(tc.split(".")[0]) > int(drv.split(".")[0]):
+        return f"不相容：torch 用 CUDA {tc} 編譯，但驅動只支援到 CUDA {drv}"
+    if not info.get("cuda_available"):
+        return f"版本看似可行（torch CUDA {tc}，驅動 {drv}），但 torch.cuda.is_available() 為 False，環境有問題"
+    return f"相容：torch CUDA {tc} ≤ 驅動支援的 CUDA {drv}，且 GPU 可用"
 
 
 # ---------- Ollama ----------
