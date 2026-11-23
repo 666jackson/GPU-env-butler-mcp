@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1374" viewBox="0 0 900 1374">
+<rect width="900" height="1374" rx="10" fill="#1d1f21"/>
+<circle cx="22" cy="20" r="6" fill="#ff5f56"/><circle cx="42" cy="20" r="6" fill="#ffbd2e"/><circle cx="62" cy="20" r="6" fill="#27c93f"/>
+<text x="450" y="25" fill="#c5c8c6" font-size="14" text-anchor="middle" font-family="sans-serif">Q4 完整環境健檢報告</text>
+<g font-family="Consolas, 'Noto Sans Mono CJK TC', 'Microsoft JhengHei', monospace" font-size="15" xml:space="preserve">
+<text x="20" y="56" fill="#f0c674" font-weight="bold">### Q4: 幫我做一份完整的環境健檢報告，依 health_report 範本格式輸出。</text>
+<text x="20" y="78" fill="#707880">&gt; build · gpt-oss-32k</text>
+<text x="20" y="100" fill="#707880">   ⋯（略過中間步驟）⋯</text>
+<text x="20" y="122" fill="#b5bd68" font-weight="bold">## 一句話總結</text>
+<text x="20" y="144" fill="#e6e6e6">整體狀態：**需要注意**（部分關鍵套件未安裝，Ollama 顯存使用可調整）</text>
+<text x="20" y="166" fill="#e6e6e6">---</text>
+<text x="20" y="188" fill="#b5bd68" font-weight="bold">## GPU 狀況</text>
+<text x="20" y="210" fill="#e6e6e6">| GPU 索引 | 名稱 | 記憶體總量(MiB) | 記憶體使用量(MiB) | 記憶體使用率(%) | 利用率(%) | 溫度</text>
+<text x="20" y="232" fill="#e6e6e6">  (C) | 顯存佔用(MiB) |</text>
+<text x="20" y="254" fill="#e6e6e6">|----------|------|-------------------|---------------------|-------------------|-----------</text>
+<text x="20" y="276" fill="#e6e6e6">  |---------|----------------|</text>
+<text x="20" y="298" fill="#e6e6e6">| 0 | NVIDIA GeForce RTX 5090 | 32607 | 22572 | 69.2 | 45 | 62 | 22572 |</text>
+<text x="20" y="320" fill="#707880">&gt; **提醒**</text>
+<text x="20" y="342" fill="#707880">&gt; - 使用率與濫用尚未發現。</text>
+<text x="20" y="364" fill="#707880">&gt; **作業程序**</text>
+<text x="20" y="386" fill="#707880">&gt; - 若有無效進程佔用 GPU，請檢查 `gpu_processes` 回報；WSL2 內部會隱藏 Windows 端程式。</text>
+<text x="20" y="408" fill="#e6e6e6">---</text>
+<text x="20" y="430" fill="#b5bd68" font-weight="bold">## 環境狀況</text>
+<text x="20" y="452" fill="#e6e6e6">| 項目 | 內容 |</text>
+<text x="20" y="474" fill="#e6e6e6">|------|------|</text>
+<text x="20" y="496" fill="#e6e6e6">| **Python 版本** | 3.11.18 (位於 `~/anaconda3/envs/gpu-butler/bin/python`) |</text>
+<text x="20" y="518" fill="#e6e6e6">| **Conda 環境** | `gpu-butler`（位於 `~/anaconda3/envs/gpu-butler`） |</text>
+<text x="20" y="540" fill="#e6e6e6">| **關鍵套件** | 已安裝：**無**；需安裝：torch, torchvision, transformers, accelerate, vllm,</text>
+<text x="20" y="562" fill="#e6e6e6">   openai, numpy |</text>
+<text x="20" y="584" fill="#e6e6e6">| **PyTorch / CUDA 相容性** |</text>
+<text x="20" y="606" fill="#707880">&gt; - torch 未安裝，無法檢查相容性。&lt;br&gt;</text>
+<text x="20" y="628" fill="#707880">&gt; - 風險：使用者若後續安裝 torch 需確保 CUDA 版本 ≤ 13.3（目前驅動支援 13.3）。 |</text>
+<text x="20" y="650" fill="#e6e6e6">---</text>
+<text x="20" y="672" fill="#b5bd68" font-weight="bold">## 系統資源</text>
+<text x="20" y="694" fill="#e6e6e6">| 項目 | 內容 |</text>
+<text x="20" y="716" fill="#e6e6e6">|------|------|</text>
+<text x="20" y="738" fill="#e6e6e6">| **CPU 型號** | Intel(R) Core(TM) i7‑14700 |</text>
+<text x="20" y="760" fill="#e6e6e6">| **CPU 核心** | 14 顯著核心 / 28 邏輯核心 |</text>
+<text x="20" y="782" fill="#e6e6e6">| **平均負載** | 1分: 0.08，5分: 0.05，15分: 0.01 |</text>
+<text x="20" y="804" fill="#e6e6e6">| **記憶體** | 總量 15.5 GB，使用中 12.7 GB（使用率 82.3 %） |</text>
+<text x="20" y="826" fill="#e6e6e6">| **交換空間** | 總量 4.0 GB，使用 0.0 GB |</text>
+<text x="20" y="848" fill="#e6e6e6">| **上機時間** | 408.9 小時 |</text>
+<text x="20" y="870" fill="#e6e6e6">---</text>
+<text x="20" y="892" fill="#b5bd68" font-weight="bold">## 提醒（依嚴重程度排序）</text>
+<text x="20" y="914" fill="#e6e6e6">- 🔴 **critical**：無（暫無嚴重問題）</text>
+<text x="20" y="936" fill="#e6e6e6">- 🟡 **warning**：無</text>
+<text x="20" y="958" fill="#e6e6e6">- 🔵 **info**</text>
+<text x="20" y="980" fill="#e6e6e6">  1. Ollama 已載入 `gpt-oss-32k:latest`，佔用 12.0 GB 顯存，卸載建議：`ollama stop gpt-oss-3</text>
+<text x="20" y="1002" fill="#e6e6e6">  2k:latest`。</text>
+<text x="20" y="1024" fill="#e6e6e6">  2. 目前未安裝關鍵套件（torch, torchvision 等）。需要時請使用 `conda install -c pytorch` 或</text>
+<text x="20" y="1046" fill="#e6e6e6">   `pip install`。</text>
+<text x="20" y="1068" fill="#e6e6e6">---</text>
+<text x="20" y="1090" fill="#b5bd68" font-weight="bold">## 下一步建議</text>
+<text x="20" y="1112" fill="#e6e6e6">1. **安裝 PyTorch**</text>
+<text x="20" y="1134" fill="#e6e6e6">   - 範例：`conda install pytorch torchvision torchaudio -c pytorch`（確保 CUDA 版本 ≤ 13.3</text>
+<text x="20" y="1156" fill="#e6e6e6">  ）。</text>
+<text x="20" y="1178" fill="#e6e6e6">2. **清理不必要的安裝**</text>
+<text x="20" y="1200" fill="#e6e6e6">   - 若不需要 `gpt-oss-32k:latest`，可停止並移除佔用 12 GB 顯存的模型：`ollama stop gpt-oss-</text>
+<text x="20" y="1222" fill="#e6e6e6">  32k:latest`。</text>
+<text x="20" y="1244" fill="#e6e6e6">3. **檢查硬碟**</text>
+<text x="20" y="1266" fill="#e6e6e6">   - `~/.ollama` 目錄缺失，請確認是否為預期或重新建立。</text>
+<text x="20" y="1288" fill="#e6e6e6">4. **考慮升級 GPU 驅動**</text>
+<text x="20" y="1310" fill="#e6e6e6">   - 若需支援更高 CUDA 版本，請檢查是否需要更新驅動。</text>
+<text x="20" y="1332" fill="#e6e6e6">---</text>
+</g></svg>

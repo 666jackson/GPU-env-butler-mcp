@@ -3,11 +3,11 @@
 > build · gpt-oss-32k
 [0m
 [0m⚙ [0mgpu-env-butler_cuda_stack Unknown
-We need respond to user: "我的 PyTorch 跟 CUDA 版本相容嗎？" They ask if their PyTorch and CUDA versions are compatible. We saw output: python_used: /home/nelso/anaconda3/envs/gpu-butler/bin/python, torch_installed: false, torch_error: "未安裝 torch", nvcc_version: "未安裝 nvcc", driver_cuda_version: "13.3". So torch not installed. We need answer: cannot determine compatibility because torch not installed; can install compatible version. Provide suggestion: check CUDA driver 13.3: PyTorch latest stable supports CUDA 11.8/12.1/12.2? Let's check. For CUDA 13.3, PyTorch 2.3? Might not support 13.3. According to PyTorch docs: PyTorch 2.1 supports up to CUDA 12.2. There's no 13.3 support. So not compatible. Recommend install newer PyTorch via pip specifying cuda version. Maybe use conda install pytorch torchvision torchaudio pytorch-cuda=12.4? but driver 13.3 is newer than supported. The driver compatibility: driver >=12.2 works for cu12.2 etc. Driver 13.3 should support cu12.4? But PyTorch hasn't released 13.3 support. So answer: torch not installed, driver 13.3, no torch. Provide steps to check.**Your current environment:**
+We need respond to user: "我的 PyTorch 跟 CUDA 版本相容嗎？" They ask if their PyTorch and CUDA versions are compatible. We saw output: python_used: ~/anaconda3/envs/gpu-butler/bin/python, torch_installed: false, torch_error: "未安裝 torch", nvcc_version: "未安裝 nvcc", driver_cuda_version: "13.3". So torch not installed. We need answer: cannot determine compatibility because torch not installed; can install compatible version. Provide suggestion: check CUDA driver 13.3: PyTorch latest stable supports CUDA 11.8/12.1/12.2? Let's check. For CUDA 13.3, PyTorch 2.3? Might not support 13.3. According to PyTorch docs: PyTorch 2.1 supports up to CUDA 12.2. There's no 13.3 support. So not compatible. Recommend install newer PyTorch via pip specifying cuda version. Maybe use conda install pytorch torchvision torchaudio pytorch-cuda=12.4? but driver 13.3 is newer than supported. The driver compatibility: driver >=12.2 works for cu12.2 etc. Driver 13.3 should support cu12.4? But PyTorch hasn't released 13.3 support. So answer: torch not installed, driver 13.3, no torch. Provide steps to check.**Your current environment:**
 
 | Item | Status |
 |------|--------|
-| Python interpreter | `/home/nelso/anaconda3/envs/gpu-butler/bin/python` |
+| Python interpreter | `~/anaconda3/envs/gpu-butler/bin/python` |
 | PyTorch | **Not installed** (error: “未安裝 torch”) |
 | NVIDIA CUDA‐Toolkit (`nvcc`) | **Not installed** |
 | NVIDIA driver CUDA‐version | `13.3` |

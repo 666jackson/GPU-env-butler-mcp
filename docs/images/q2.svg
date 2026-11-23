@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="362" viewBox="0 0 900 362">
+<rect width="900" height="362" rx="10" fill="#1d1f21"/>
+<circle cx="22" cy="20" r="6" fill="#ff5f56"/><circle cx="42" cy="20" r="6" fill="#ffbd2e"/><circle cx="62" cy="20" r="6" fill="#27c93f"/>
+<text x="450" y="25" fill="#c5c8c6" font-size="14" text-anchor="middle" font-family="sans-serif">Q2 我還能再載入一個 27B 的模型嗎？</text>
+<g font-family="Consolas, 'Noto Sans Mono CJK TC', 'Microsoft JhengHei', monospace" font-size="15" xml:space="preserve">
+<text x="20" y="56" fill="#f0c674" font-weight="bold">### Q2: 我還能再載入一個 27B 的模型嗎？請先查剩餘顯存與已載入模型再估算。</text>
+<text x="20" y="78" fill="#707880">&gt; build · gpt-oss-32k</text>
+<text x="20" y="100" fill="#81a2be" font-weight="bold">⚙ gpu-env-butler_gpu_status {&quot;cacheable&quot;:true}</text>
+<text x="20" y="122" fill="#81a2be" font-weight="bold">⚙ gpu-env-butler_ollama_status {&quot;cacheable&quot;:true}</text>
+<text x="20" y="144" fill="#e6e6e6">已取到 GPU 顯存與 Ollama 已載入模型。還有剩計 9.6 GiB free。已載入「gpt-oss‑32k:latest」（約</text>
+<text x="20" y="166" fill="#e6e6e6">   12 GiB）。估算 27B 量化為 0.6 GiB/參數 * 27 ≈ 16.2 GiB， +2‑4 GiB context → 大約 18‑20 Gi</text>
+<text x="20" y="188" fill="#e6e6e6">  B。剩餘 9.6 GiB，不足以載入。</text>
+<text x="20" y="210" fill="#e6e6e6">Now respond to user in Chinese.目前 GPU 可用顯存為 **9.6 GiB**，已載入的 Ollama 模型為「gpt‑</text>
+<text x="20" y="232" fill="#e6e6e6">  oss‑32k:latest」（約 12 GiB）。</text>
+<text x="20" y="254" fill="#e6e6e6">- 27B 模型 4‑bit 量化時，每參數約 0.6 GB，27B 需要約 **16.2 GiB**。</text>
+<text x="20" y="276" fill="#e6e6e6">- 加上 2‑4 GiB 的上下文緩衝，總需求大約 **18‑20 GiB**。</text>
+<text x="20" y="298" fill="#e6e6e6">因為剩餘顯存僅約 9.6 GiB，尚不夠載入 27B 模型。若要使用此模型，則需要釋放更多顯存或使用更小</text>
+<text x="20" y="320" fill="#e6e6e6">  型的模型。</text>
+</g></svg>

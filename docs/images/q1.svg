@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="208" viewBox="0 0 900 208">
+<rect width="900" height="208" rx="10" fill="#1d1f21"/>
+<circle cx="22" cy="20" r="6" fill="#ff5f56"/><circle cx="42" cy="20" r="6" fill="#ffbd2e"/><circle cx="62" cy="20" r="6" fill="#27c93f"/>
+<text x="450" y="25" fill="#c5c8c6" font-size="14" text-anchor="middle" font-family="sans-serif">Q1 現在顯卡被誰佔用？</text>
+<g font-family="Consolas, 'Noto Sans Mono CJK TC', 'Microsoft JhengHei', monospace" font-size="15" xml:space="preserve">
+<text x="20" y="56" fill="#f0c674" font-weight="bold">### Q1: 現在顯卡被誰佔用？</text>
+<text x="20" y="78" fill="#707880">&gt; build · gpt-oss-32k</text>
+<text x="20" y="100" fill="#81a2be" font-weight="bold">⚙ gpu-env-butler_gpu_processes Unknown</text>
+<text x="20" y="122" fill="#81a2be" font-weight="bold">⚙ gpu-env-butler_gpu_status Unknown</text>
+<text x="20" y="144" fill="#e6e6e6">已列出佔用顯卡的進程與目前 GPU 使用狀況。顯存使用為約 22 GiB（69.2 %）。若需更詳細的程式名稱</text>
+<text x="20" y="166" fill="#e6e6e6">  ，可再重新呼叫 `gpu_env_butler_gpu_processes`。</text>
+</g></svg>

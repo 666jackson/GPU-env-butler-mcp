@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1000" viewBox="0 0 900 1000">
+<rect width="900" height="1000" rx="10" fill="#1d1f21"/>
+<circle cx="22" cy="20" r="6" fill="#ff5f56"/><circle cx="42" cy="20" r="6" fill="#ffbd2e"/><circle cx="62" cy="20" r="6" fill="#27c93f"/>
+<text x="450" y="25" fill="#c5c8c6" font-size="14" text-anchor="middle" font-family="sans-serif">Q3 改前：模型自己推論 → 答錯</text>
+<g font-family="Consolas, 'Noto Sans Mono CJK TC', 'Microsoft JhengHei', monospace" font-size="15" xml:space="preserve">
+<text x="20" y="56" fill="#f0c674" font-weight="bold">### Q3: 我的 PyTorch 跟 CUDA 版本相容嗎？</text>
+<text x="20" y="78" fill="#707880">&gt; build · gpt-oss-32k</text>
+<text x="20" y="100" fill="#81a2be" font-weight="bold">⚙ gpu-env-butler_cuda_stack Unknown</text>
+<text x="20" y="122" fill="#e6e6e6">We need respond to user: &quot;我的 PyTorch 跟 CUDA 版本相容嗎？&quot; They ask if their PyTorch and C</text>
+<text x="20" y="144" fill="#e6e6e6">  UDA versions are compatible. We saw output: python_used: ~/anaconda3/envs/gpu-butler/bin/p</text>
+<text x="20" y="166" fill="#e6e6e6">  ython, torch_installed: false, torch_error: &quot;未安裝 torch&quot;, nvcc_version: &quot;未安裝 nvcc&quot;, d</text>
+<text x="20" y="188" fill="#e6e6e6">  river_cuda_version: &quot;13.3&quot;. So torch not installed. We need answer: cannot determine compa</text>
+<text x="20" y="210" fill="#e6e6e6">  tibility because torch not installed; can install compatible version. Provide suggestion: </text>
+<text x="20" y="232" fill="#e6e6e6">  check CUDA driver 13.3: PyTorch latest stable supports CUDA 11.8/12.1/12.2? Let&#x27;s check. F</text>
+<text x="20" y="254" fill="#e6e6e6">  or CUDA 13.3, PyTorch 2.3? Might not support 13.3. According to PyTorch docs: PyTorch 2.1 </text>
+<text x="20" y="276" fill="#e6e6e6">  supports up to CUDA 12.2. There&#x27;s no 13.3 support. So not compatible. Recommend install ne</text>
+<text x="20" y="298" fill="#e6e6e6">  wer PyTorch via pip specifying cuda version. Maybe use conda install pytorch torchvision t</text>
+<text x="20" y="320" fill="#e6e6e6">  orchaudio pytorch-cuda=12.4? but driver 13.3 is newer than supported. The driver compatibi</text>
+<text x="20" y="342" fill="#e6e6e6">  lity: driver &gt;=12.2 works for cu12.2 etc. Driver 13.3 should support cu12.4? But PyTorch h</text>
+<text x="20" y="364" fill="#e6e6e6">  asn&#x27;t released 13.3 support. So answer: torch not installed, driver 13.3, no torch. Provid</text>
+<text x="20" y="386" fill="#e6e6e6">  e steps to check.**Your current environment:**</text>
+<text x="20" y="408" fill="#e6e6e6">| Item | Status |</text>
+<text x="20" y="430" fill="#e6e6e6">|------|--------|</text>
+<text x="20" y="452" fill="#e6e6e6">| Python interpreter | `~/anaconda3/envs/gpu-butler/bin/python` |</text>
+<text x="20" y="474" fill="#e6e6e6">| PyTorch | **Not installed** (error: “未安裝 torch”) |</text>
+<text x="20" y="496" fill="#e6e6e6">| NVIDIA CUDA‐Toolkit (`nvcc`) | **Not installed** |</text>
+<text x="20" y="518" fill="#e6e6e6">| NVIDIA driver CUDA‐version | `13.3` |</text>
+<text x="20" y="540" fill="#e6e6e6">---</text>
+<text x="20" y="562" fill="#f0c674" font-weight="bold">### What this means</text>
+<text x="20" y="584" fill="#e6e6e6">* Because PyTorch is **not installed**, we can’t directly check what CUDA version it would u</text>
+<text x="20" y="606" fill="#e6e6e6">  se.</text>
+<text x="20" y="628" fill="#e6e6e6">* CUDA 13.3 is newer than the CUDA versions officially supported by any released PyTorch 1.x</text>
+<text x="20" y="650" fill="#e6e6e6">   or 2.x release.</text>
+<text x="20" y="672" fill="#e6e6e6">  * PyTorch 2.1 and 2.2 support up to **CUDA 12.2**.</text>
+<text x="20" y="694" fill="#e6e6e6">  * PyTorch 2.3 (the current LTS) also targets CUDA 12.1–12.2.</text>
+<text x="20" y="716" fill="#e6e6e6">  * No PyTorch release yet supports CUDA 13.x.</text>
+<text x="20" y="738" fill="#e6e6e6">Therefore, even if you installed PyTorch now, it would **not be compatible with CUDA 13.3** </text>
+<text x="20" y="760" fill="#e6e6e6">  unless you compiled PyTorch from source with newer CUDA support or until the upstream PyTo</text>
+<text x="20" y="782" fill="#e6e6e6">  rch team releases a 13.x‑compatible build.</text>
+<text x="20" y="804" fill="#e6e6e6">---</text>
+<text x="20" y="826" fill="#f0c674" font-weight="bold">### How to get a working setup</text>
+<text x="20" y="848" fill="#e6e6e6">1. **Option A – Use the latest supported CUDA (12.2 or 12.1)**</text>
+<text x="20" y="870" fill="#e6e6e6">   * Uninstall the current driver or install a driver that supports the target CUDA (e.g., N</text>
+<text x="20" y="892" fill="#e6e6e6">  VIDIA driver 535.x works for CUDA 12.2).</text>
+<text x="20" y="914" fill="#e6e6e6">   * Install PyTorch via Conda:</text>
+<text x="20" y="936" fill="#e6e6e6">     ```bash</text>
+<text x="20" y="958" fill="#707880">   ⋯（完整內容見 docs/screenshots/）⋯</text>
+</g></svg>

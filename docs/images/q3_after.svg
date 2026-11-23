@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="230" viewBox="0 0 900 230">
+<rect width="900" height="230" rx="10" fill="#1d1f21"/>
+<circle cx="22" cy="20" r="6" fill="#ff5f56"/><circle cx="42" cy="20" r="6" fill="#ffbd2e"/><circle cx="62" cy="20" r="6" fill="#27c93f"/>
+<text x="450" y="25" fill="#c5c8c6" font-size="14" text-anchor="middle" font-family="sans-serif">Q3 改後：引用程式判斷的 compatibility → 答對</text>
+<g font-family="Consolas, 'Noto Sans Mono CJK TC', 'Microsoft JhengHei', monospace" font-size="15" xml:space="preserve">
+<text x="20" y="56" fill="#f0c674" font-weight="bold">### Q3: 我的 PyTorch 跟 CUDA 版本相容嗎？</text>
+<text x="20" y="78" fill="#707880">&gt; build · gpt-oss-32k</text>
+<text x="20" y="100" fill="#81a2be" font-weight="bold">⚙ gpu-env-butler_cuda_stack Unknown</text>
+<text x="20" y="122" fill="#e6e6e6">目前 Python 環境中尚未安裝 torch，因此無法直接驗證 PyTorch 與 CUDA 的相容性。</text>
+<text x="20" y="144" fill="#e6e6e6">- 驅動版本：**13.3**（上限 13.3）</text>
+<text x="20" y="166" fill="#e6e6e6">- 若安裝 PyTorch，請選擇可支援 CUDA 13.3 的版本（例如 cu12x 或 cu13x 版）。</text>
+<text x="20" y="188" fill="#e6e6e6">- 如需進一步檢查安裝結果，請安裝 `torch` 後再查詢。</text>
+</g></svg>
