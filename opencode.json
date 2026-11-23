@@ -1,0 +1,19 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "provider": {
+    "ollama": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Ollama (local)",
+      "options": { "baseURL": "http://localhost:11434/v1" },
+      "models": { "gpt-oss-32k": { "name": "gpt-oss 20B 32K", "tools": true } }
+    }
+  },
+  "model": "ollama/gpt-oss-32k",
+  "mcp": {
+    "gpu-env-butler": {
+      "type": "local",
+      "command": ["conda", "run", "--no-capture-output", "-n", "gpu-butler", "python", "server.py"],
+      "enabled": true
+    }
+  }
+}
